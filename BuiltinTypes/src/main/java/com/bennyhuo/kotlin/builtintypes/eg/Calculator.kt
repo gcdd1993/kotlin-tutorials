@@ -1,6 +1,5 @@
 package com.bennyhuo.kotlin.builtintypes.eg
 
-
 /**
  * input: 3 * 4
  */
@@ -22,11 +21,11 @@ fun main(vararg args: String) {
     try {
         println("Input: ${args.joinToString(" ")}")
         println("Output: ${opFunc(args[0].toInt(), args[2].toInt())}")
-    } catch (e: Exception) {
-        println("Invalid Arguments.")
-
+    } catch (ex: Exception) {
+        println("Invalid Arguments")
         showHelp()
     }
+
 }
 
 fun plus(arg0: Int, arg1: Int): Int {
@@ -48,7 +47,7 @@ fun div(arg0: Int, arg1: Int): Int {
 fun showHelp() {
     println(
         """
-        
+
         Simple Calculator:
             Input: 3 * 4
             Output: 12
