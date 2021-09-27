@@ -18,10 +18,10 @@ object DownloadManager {
     }
 
     sealed class DownloadStatus {
-        object None: DownloadStatus()
-        class Progress(val value: Int): DownloadStatus()
-        class Error(val throwable: Throwable): DownloadStatus()
-        class Done(val file: File): DownloadStatus()
+        object None : DownloadStatus()
+        class Progress(val value: Int) : DownloadStatus()
+        class Error(val throwable: Throwable) : DownloadStatus()
+        class Done(val file: File) : DownloadStatus()
     }
 
     fun download(url: String, fileName: String): Flow<DownloadStatus> {
@@ -29,15 +29,15 @@ object DownloadManager {
         return flow {
             val request = Request.Builder().url(url).get().build()
             val response = okHttpClient.newCall(request).execute()
-            if(response.isSuccessful){
+            if (response.isSuccessful) {
                 response.body()!!.let { body ->
                     val total = body.contentLength()
                     var emittedProgress = 0L
-                    file.outputStream().use { output->
+                    file.outputStream().use { output ->
                         body.byteStream().use { input ->
-                            input.copyTo(output) {bytesCopied ->
+                            input.copyTo(output) { bytesCopied ->
                                 val progress = bytesCopied * 100 / total
-                                if(progress - emittedProgress > 5){
+                                if (progress - emittedProgress > 5) {
                                     emit(DownloadStatus.Progress(progress.toInt()))
                                     emittedProgress = progress
                                 }

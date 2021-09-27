@@ -9,7 +9,7 @@ import kotlin.reflect.jvm.isAccessible
 //region impl
 fun <T : Any> releasableNotNull() = ReleasableNotNull<T>()
 
-class ReleasableNotNull<T: Any>: ReadWriteProperty<Any, T> {
+class ReleasableNotNull<T : Any> : ReadWriteProperty<Any, T> {
     private var value: T? = null
 
     override fun getValue(thisRef: Any, property: KProperty<*>): T {
@@ -48,13 +48,13 @@ class Bitmap(val width: Int, val height: Int)
 class Activity {
     private var bitmap by releasableNotNull<Bitmap>()
 
-    fun onCreate(){
+    fun onCreate() {
         println(this::bitmap.isInitialized)
         bitmap = Bitmap(1920, 1080)
         println(::bitmap.isInitialized)
     }
 
-    fun onDestroy(){
+    fun onDestroy() {
         println(::bitmap.isInitialized)
         ::bitmap.release()
         println(::bitmap.isInitialized)

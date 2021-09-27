@@ -1,10 +1,9 @@
 package com.bennyhuo.kotlin.expressions.eg
 
-operator fun String.minus(right: Any?)
-        = this.replaceFirst(right.toString(), "")
+operator fun String.minus(right: Any?) = this.replaceFirst(right.toString(), "")
 
 operator fun String.times(right: Int): String {
-    return (1..right).joinToString(""){ this }
+    return (1..right).joinToString("") { this }
 }
 
 operator fun String.div(right: Any?): Int {

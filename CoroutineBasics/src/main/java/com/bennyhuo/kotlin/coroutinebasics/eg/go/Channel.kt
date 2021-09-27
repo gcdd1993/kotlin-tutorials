@@ -162,14 +162,14 @@ class QueueChannel<T> : Channel<T> {
 fun plainChannelSample() {
     val channel = SimpleChannel<Int>()
 
-    go("producer"){
+    go("producer") {
         for (i in 0..6) {
             log("send", i)
             channel.send(i)
         }
     }
 
-    go("consumer", channel::close){
+    go("consumer", channel::close) {
         for (i in 0..5) {
             log("receive")
             val got = channel.receive()
@@ -181,7 +181,7 @@ fun plainChannelSample() {
 fun blockingChannelSample() {
     val channel = QueueChannel<Int>()
     for (n in 0..5) {
-        go("producer $n"){
+        go("producer $n") {
             for (i in n..n + 5) {
                 log("send", i)
                 channel.send(i)
@@ -197,7 +197,7 @@ fun blockingChannelSample() {
     }
 }
 
-fun go(name: String = "", completion: () -> Unit = {}, block: suspend () -> Unit){
+fun go(name: String = "", completion: () -> Unit = {}, block: suspend () -> Unit) {
     block.startCoroutine(object : Continuation<Any> {
         override val context = DispatcherContext()
 

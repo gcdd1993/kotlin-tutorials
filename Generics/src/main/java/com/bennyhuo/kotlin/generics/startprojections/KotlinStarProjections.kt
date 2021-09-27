@@ -1,7 +1,6 @@
 package com.bennyhuo.kotlin.generics.startprojections
 
 
-
 fun main() {
     //region fold
     val queryMap: QueryMap<*, *> = QueryMap<String, Int>()

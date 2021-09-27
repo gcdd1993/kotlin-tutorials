@@ -13,15 +13,19 @@ import kotlin.coroutines.startCoroutine
 
 private var coroutineIndex = AtomicInteger(0)
 
-fun CoroutineScope.launch(context: CoroutineContext = EmptyCoroutineContext,
-           block: suspend CoroutineScope.()-> Unit): Job {
+fun CoroutineScope.launch(
+    context: CoroutineContext = EmptyCoroutineContext,
+    block: suspend CoroutineScope.() -> Unit
+): Job {
     val completion = StandardCoroutine(newCoroutineContext(context))
     block.startCoroutine(completion, completion)
     return completion
 }
 
-fun <T> CoroutineScope.async(context: CoroutineContext = EmptyCoroutineContext,
-          block: suspend CoroutineScope.()-> T): Deferred<T> {
+fun <T> CoroutineScope.async(
+    context: CoroutineContext = EmptyCoroutineContext,
+    block: suspend CoroutineScope.() -> T
+): Deferred<T> {
     val completion = DeferredCoroutine<T>(newCoroutineContext(context))
     block.startCoroutine(completion, completion)
     return completion
@@ -29,7 +33,7 @@ fun <T> CoroutineScope.async(context: CoroutineContext = EmptyCoroutineContext,
 
 fun CoroutineScope.newCoroutineContext(context: CoroutineContext): CoroutineContext {
     val combined = scopeContext + context + CoroutineName("@coroutine#${coroutineIndex.getAndIncrement()}")
-    return if(combined !== Dispatchers.Default && combined[ContinuationInterceptor] == null)
+    return if (combined !== Dispatchers.Default && combined[ContinuationInterceptor] == null)
         combined + Dispatchers.Default else combined
 }
 

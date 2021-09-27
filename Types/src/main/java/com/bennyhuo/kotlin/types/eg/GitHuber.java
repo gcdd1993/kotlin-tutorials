@@ -19,7 +19,7 @@ public class GitHuber {
 
         Repository repository = response.body();
 
-        if(repository == null){
+        if (repository == null) {
             System.out.println("Error! " + response.code() + " " + response.message());
         } else {
             System.out.println(repository.getName());
@@ -39,7 +39,7 @@ public class GitHuber {
                     "<body>\n" +
                     "<h1><a href='" + repository.getHtml_url() + "'>" + repository.getOwner().getLogin() + " - " + repository.getName() + "</a></h1>\n" +
                     "<p>" + repository.getDescription() + "</p>\n" +
-                    "<p>Stars: "+ repository.getStargazers_count() +"</p>\n" +
+                    "<p>Stars: " + repository.getStargazers_count() + "</p>\n" +
                     "<p>Forks: " + repository.getForks_count() + "</p>\n" +
                     "</body>\n" +
                     "</html>");

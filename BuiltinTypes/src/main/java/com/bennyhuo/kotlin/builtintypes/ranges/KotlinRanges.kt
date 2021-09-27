@@ -6,8 +6,8 @@ fun main() {
     val charRange = 'a'..'z'
     val longRange = 1L..100L
 
-    val floatRange = 1f .. 2f // [1, 2]
-    val doubleRange = 1.0 .. 2.0
+    val floatRange = 1f..2f // [1, 2]
+    val doubleRange = 1.0..4.0
 
     println(intRange.joinToString())
     println(floatRange.toString())
@@ -41,12 +41,12 @@ fun main() {
         println(it)
     }
 
-    if (3.0 !in doubleRange) {
-        println("3 in range 'intRange'")
+    if (3.0 in doubleRange) {
+        println("3 in range $doubleRange")
     }
 
     if (12 !in intRange) {
-        println("12 not in range 'intRange'")
+        println("12 not in range $intRange")
     }
 
     val array = intArrayOf(1, 3, 5, 7)
@@ -54,7 +54,7 @@ fun main() {
         println(array[i])
     }
 
-    for(i in array.indices){
+    for (i in array.indices) {
         println(array[i])
     }
 }

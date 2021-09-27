@@ -9,7 +9,7 @@ fun main() {
     }
 
     // region +折叠
-    val intArray = IntArray(5){ it + 1 }
+    val intArray = IntArray(5) { it + 1 }
     intArray.forEach {
         println(it)
     }

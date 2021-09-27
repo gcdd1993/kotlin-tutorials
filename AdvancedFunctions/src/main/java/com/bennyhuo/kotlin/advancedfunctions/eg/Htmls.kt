@@ -7,22 +7,22 @@ interface Node {
     fun render(): String
 }
 
-class StringNode(val content: String): Node {
+class StringNode(val content: String) : Node {
     override fun render(): String {
         return content
     }
 }
 
-class BlockNode(val name: String): Node {
+class BlockNode(val name: String) : Node {
 
     val children = ArrayList<Node>()
     val properties = HashMap<String, Any>()
 
     override fun render(): String {
-        return """<$name ${properties.map { "${it.key}='${it.value}'" }.joinToString(" ")}>${children.joinToString(""){ it.render() }}</$name>"""
+        return """<$name ${properties.map { "${it.key}='${it.value}'" }.joinToString(" ")}>${children.joinToString("") { it.render() }}</$name>"""
     }
 
-    operator fun String.invoke(block: BlockNode.()-> Unit): BlockNode {
+    operator fun String.invoke(block: BlockNode.() -> Unit): BlockNode {
         val node = BlockNode(this)
         node.block()
         this@BlockNode.children += node
@@ -33,7 +33,7 @@ class BlockNode(val name: String): Node {
         this@BlockNode.properties[this] = value
     }
 
-    operator fun String.unaryPlus(){
+    operator fun String.unaryPlus() {
         this@BlockNode.children += StringNode(this)
     }
 
@@ -45,14 +45,14 @@ fun html(block: BlockNode.() -> Unit): BlockNode {
     return html
 }
 
-fun BlockNode.head(block: BlockNode.()-> Unit): BlockNode {
+fun BlockNode.head(block: BlockNode.() -> Unit): BlockNode {
     val head = BlockNode("head")
     head.block()
     this.children += head
     return head
 }
 
-fun BlockNode.body(block: BlockNode.()-> Unit): BlockNode {
+fun BlockNode.body(block: BlockNode.() -> Unit): BlockNode {
     val head = BlockNode("body")
     head.block()
     this.children += head

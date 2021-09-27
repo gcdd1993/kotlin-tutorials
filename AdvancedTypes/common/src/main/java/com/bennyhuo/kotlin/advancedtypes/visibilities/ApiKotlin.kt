@@ -7,11 +7,11 @@ class ApiKotlin {
     private val coreApiKotlinA = CoreApiKotlinA()
     private val coreApiKotlinB = CoreApiKotlinB()
 
-    fun a(){
+    fun a() {
         coreApiKotlinA.a()
     }
 
-    fun b(){
+    fun b() {
         coreApiKotlinB.b()
     }
 }

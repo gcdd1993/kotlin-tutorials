@@ -7,16 +7,15 @@ import kotlin.coroutines.CoroutineContext
 
 typealias EventTask = () -> Unit
 
-class BlockingQueueDispatcher: LinkedBlockingDeque<EventTask>(), Dispatcher {
+class BlockingQueueDispatcher : LinkedBlockingDeque<EventTask>(), Dispatcher {
     override fun dispatch(block: () -> Unit) {
         offer(block)
     }
 }
 
-class BlockingCoroutine<T>(context: CoroutineContext, private val eventQueue: LinkedBlockingDeque<EventTask>)
-    : AbstractCoroutine<T>(context){
+class BlockingCoroutine<T>(context: CoroutineContext, private val eventQueue: LinkedBlockingDeque<EventTask>) : AbstractCoroutine<T>(context) {
     fun joinBlocking(): T {
-        while(!isCompleted){
+        while (!isCompleted) {
             eventQueue.take().invoke()
         }
         return (state.get() as CoroutineState.Complete<T>).let {

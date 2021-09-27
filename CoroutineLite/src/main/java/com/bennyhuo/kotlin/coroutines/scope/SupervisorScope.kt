@@ -15,8 +15,7 @@ private class SupervisorCoroutine<T>(context: CoroutineContext, continuation: Co
 }
 
 suspend fun <R> supervisorScope(block: suspend CoroutineScope.() -> R): R =
-    suspendCoroutine {
-        continuation ->
+    suspendCoroutine { continuation ->
         val coroutine = SupervisorCoroutine(continuation.context, continuation)
         block.startCoroutine(coroutine, coroutine)
     }

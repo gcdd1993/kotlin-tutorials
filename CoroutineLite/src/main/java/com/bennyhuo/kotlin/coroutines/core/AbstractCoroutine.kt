@@ -11,7 +11,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.coroutines.*
 
-abstract class AbstractCoroutine<T>(context: CoroutineContext):
+abstract class AbstractCoroutine<T>(context: CoroutineContext) :
     Job, Continuation<T>, CoroutineScope {
 
     protected val state = AtomicReference<CoroutineState>()
@@ -45,9 +45,8 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
     }
 
     override fun remove(disposable: Disposable) {
-        state.updateAndGet {
-            prev ->
-            when(prev){
+        state.updateAndGet { prev ->
+            when (prev) {
                 is CoroutineState.InComplete -> {
                     CoroutineState.InComplete().from(prev).without(disposable)
                 }
@@ -60,12 +59,12 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
     }
 
     override suspend fun join() {
-        when(state.get()){
+        when (state.get()) {
             is CoroutineState.Cancelling,
             is CoroutineState.InComplete -> return joinSuspend()
             is CoroutineState.Complete<*> -> {
-                val currentCallingJobState = coroutineContext[Job] ?.isActive ?: return
-                if(!currentCallingJobState) {
+                val currentCallingJobState = coroutineContext[Job]?.isActive ?: return
+                if (!currentCallingJobState) {
                     throw CancellationException("Coroutine is cancelled.")
                 }
                 return
@@ -73,10 +72,8 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
         }
     }
 
-    private suspend fun joinSuspend() = suspendCancellableCoroutine<Unit> {
-        continuation ->
-        val disposable = doOnCompleted {
-            result ->
+    private suspend fun joinSuspend() = suspendCancellableCoroutine<Unit> { continuation ->
+        val disposable = doOnCompleted { result ->
             continuation.resume(Unit)
         }
         continuation.invokeOnCancel { disposable.dispose() }
@@ -84,9 +81,8 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
 
     protected fun doOnCompleted(block: (Result<T>) -> Unit): Disposable {
         val disposable = CompletionHandlerDisposable(this, block)
-        val newState = state.updateAndGet {
-            prev ->
-            when(prev) {
+        val newState = state.updateAndGet { prev ->
+            when (prev) {
                 is CoroutineState.InComplete -> {
                     CoroutineState.InComplete().from(prev).with(disposable)
                 }
@@ -113,9 +109,8 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
     }
 
     override fun resumeWith(result: Result<T>) {
-        val newState = state.updateAndGet {
-            prevState ->
-            when(prevState) {
+        val newState = state.updateAndGet { prevState ->
+            when (prevState) {
                 is CoroutineState.Cancelling,
                 is CoroutineState.InComplete -> {
                     CoroutineState.Complete(result.getOrNull(), result.exceptionOrNull()).from(prevState)
@@ -134,7 +129,7 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
     }
 
     private fun tryHandleException(e: Throwable): Boolean {
-        return when(e){
+        return when (e) {
             is CancellationException -> false
             else -> {
                 (parentJob as? AbstractCoroutine<*>)?.handleChildException(e)?.takeIf { it }
@@ -154,9 +149,8 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
 
     override fun invokeOnCancel(onCancel: OnCancel): Disposable {
         val disposable = CancellationHandlerDisposable(this, onCancel)
-        val newState = state.updateAndGet {
-            prev ->
-            when(prev) {
+        val newState = state.updateAndGet { prev ->
+            when (prev) {
                 is CoroutineState.InComplete -> {
                     CoroutineState.InComplete().from(prev).with(disposable)
                 }
@@ -174,9 +168,8 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
     }
 
     override fun cancel() {
-        val newState = state.updateAndGet {
-            prev ->
-            when(prev){
+        val newState = state.updateAndGet { prev ->
+            when (prev) {
                 is CoroutineState.InComplete -> {
                     CoroutineState.Cancelling().from(prev)
                 }
@@ -187,7 +180,7 @@ abstract class AbstractCoroutine<T>(context: CoroutineContext):
             }
         }
 
-        if(newState is CoroutineState.Cancelling){
+        if (newState is CoroutineState.Cancelling) {
             newState.notifyCancellation()
         }
 

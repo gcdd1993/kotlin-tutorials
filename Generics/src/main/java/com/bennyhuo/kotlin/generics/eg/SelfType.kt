@@ -22,7 +22,7 @@ interface SelfType<Self> {
         get() = this as Self
 }
 
-open class NotificationBuilder<Self: NotificationBuilder<Self>>: SelfType<Self> {
+open class NotificationBuilder<Self : NotificationBuilder<Self>> : SelfType<Self> {
     protected var title: String = ""
     protected var content: String = ""
 

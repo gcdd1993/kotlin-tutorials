@@ -45,10 +45,6 @@ public class JavaStreams {
         //[1,2,3] -> [0,0,1,0,1,2]
 
 
-
-
-
-
         //region
 //        list.forEach((e) -> {
 //            if (e == 2) return;

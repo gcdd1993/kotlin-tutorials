@@ -34,17 +34,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        mainViewModel.downloadStatusLiveData.observe(this) {
-            downloadStatus ->
-            when(downloadStatus){
+        mainViewModel.downloadStatusLiveData.observe(this) { downloadStatus ->
+            when (downloadStatus) {
                 null, None -> {
                     downloadButton.isEnabled = true
                     downloadButton.text = "Download"
                     downloadButton.setOnClickListener {
                         lifecycleScope.launch {
                             mainViewModel.download(
-                                    "https://kotlinlang.org/docs/kotlin-docs.pdf",
-                                    "Kotlin-Docs.pdf"
+                                "https://kotlinlang.org/docs/kotlin-docs.pdf",
+                                "Kotlin-Docs.pdf"
                             )
                         }
                     }
@@ -60,8 +59,8 @@ class MainActivity : AppCompatActivity() {
                     downloadButton.setOnClickListener {
                         lifecycleScope.launch {
                             mainViewModel.download(
-                                    "https://kotlinlang.org/docs/kotlin-docs.pdf",
-                                    "Kotlin-Docs.pdf"
+                                "https://kotlinlang.org/docs/kotlin-docs.pdf",
+                                "Kotlin-Docs.pdf"
                             )
                         }
                     }

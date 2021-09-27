@@ -7,7 +7,7 @@ public class JavaGenerics {
         int max = Math.max(1, 2);
 
         File file = new File("hello.txt");
-        try(InputStream is = new FileInputStream(file)){
+        try (InputStream is = new FileInputStream(file)) {
 
         }
     }

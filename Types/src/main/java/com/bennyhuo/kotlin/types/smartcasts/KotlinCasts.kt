@@ -12,32 +12,15 @@ fun main() {
 //    }
 
 
-
-
-
-
-
-
-
     val kotliner: Kotliner = Person("benny", 20)
-    if(kotliner is Person){
+    if (kotliner is Person) {
         println((kotliner as? Person)?.name)
     }
 
 
-
-
-
-
-
-
-
-
-
-
     var value: String? = null
     value = "benny"
-    if(value != null){
+    if (value != null) {
         println(value.length)
     }
 

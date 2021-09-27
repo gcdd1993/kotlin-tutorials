@@ -7,13 +7,16 @@ import java.nio.file.attribute.BasicFileAttributes
 import kotlin.concurrent.thread
 
 typealias FileEventListener = (file: File) -> Unit
+
 private val EMPTY: FileEventListener = {}
 
-class FileWatcher(private val watchFile: File,
-                  private val recursively: Boolean = true,
-                  private val onCreated: FileEventListener = EMPTY,
-                  private val onModified: FileEventListener = EMPTY,
-                  private val onDeleted: FileEventListener = EMPTY) {
+class FileWatcher(
+    private val watchFile: File,
+    private val recursively: Boolean = true,
+    private val onCreated: FileEventListener = EMPTY,
+    private val onModified: FileEventListener = EMPTY,
+    private val onDeleted: FileEventListener = EMPTY
+) {
 
     private val folderPath by lazy {
         Paths.get(watchFile.canonicalPath).let {
@@ -41,7 +44,7 @@ class FileWatcher(private val watchFile: File,
 
     @Synchronized
     fun start() {
-        if(!isWatching){
+        if (!isWatching) {
             isWatching = true
         }
 
@@ -52,7 +55,8 @@ class FileWatcher(private val watchFile: File,
             // We create the new WatchService using the try-with-resources block(in kotlin we use `use` block)
             fileSystem.newWatchService().use { service ->
                 // We watch for modification events
-                folderPath.register(service, recursively,
+                folderPath.register(
+                    service, recursively,
                     StandardWatchEventKinds.ENTRY_CREATE,
                     StandardWatchEventKinds.ENTRY_DELETE,
                     StandardWatchEventKinds.ENTRY_MODIFY
@@ -79,7 +83,7 @@ class FileWatcher(private val watchFile: File,
                                         println("onDeleted")
                                         onDeleted
                                     }
-                                    else ->{
+                                    else -> {
                                         println("onModified")
                                         onModified // modified.
                                     }
@@ -97,7 +101,7 @@ class FileWatcher(private val watchFile: File,
     }
 
     @Synchronized
-    fun stop(){
+    fun stop() {
         isWatching = false
     }
 }

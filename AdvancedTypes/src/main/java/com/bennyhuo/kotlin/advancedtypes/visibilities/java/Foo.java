@@ -2,11 +2,11 @@ package com.bennyhuo.kotlin.advancedtypes.visibilities.java;
 
 public class Foo {
 
-    void defaultBar(){
+    void defaultBar() {
 
     }
 
-    protected void protectedBar(){
+    protected void protectedBar() {
 
     }
 

@@ -10,8 +10,6 @@ fun main() {
 }
 
 
-
-
 interface Book
 
 interface EduBook : Book
@@ -22,16 +20,13 @@ class BookStore<out T : Book> {
     }
 }
 
-fun covariant(){
+fun covariant() {
     val eduBookStore: BookStore<EduBook> = BookStore<EduBook>()
     val bookStore: BookStore<Book> = eduBookStore
 
     val book: Book = bookStore.getBook()
-    val eduBook : EduBook = eduBookStore.getBook()
+    val eduBook: EduBook = eduBookStore.getBook()
 }
-
-
-
 
 
 open class Waste
@@ -44,7 +39,7 @@ class Dustbin<in T : Waste> {
     }
 }
 
-fun contravariant(){
+fun contravariant() {
     val dustbin: Dustbin<Waste> = Dustbin<Waste>()
     val dryWasteDustbin: Dustbin<DryWaste> = dustbin
 
@@ -57,8 +52,6 @@ fun contravariant(){
 //    dryWasteDustbin.put(waste)
     dryWasteDustbin.put(dryWaste)
 }
-
-
 
 
 sealed class List<out T> {

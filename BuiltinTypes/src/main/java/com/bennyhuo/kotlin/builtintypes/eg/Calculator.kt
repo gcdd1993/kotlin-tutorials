@@ -5,7 +5,7 @@ package com.bennyhuo.kotlin.builtintypes.eg
  * input: 3 * 4
  */
 fun main(vararg args: String) {
-    if(args.size < 3){
+    if (args.size < 3) {
         return showHelp()
     }
 
@@ -29,27 +29,29 @@ fun main(vararg args: String) {
     }
 }
 
-fun plus(arg0: Int, arg1: Int): Int{
+fun plus(arg0: Int, arg1: Int): Int {
     return arg0 + arg1
 }
 
-fun minus(arg0: Int, arg1: Int): Int{
+fun minus(arg0: Int, arg1: Int): Int {
     return arg0 - arg1
 }
 
-fun times(arg0: Int, arg1: Int): Int{
+fun times(arg0: Int, arg1: Int): Int {
     return arg0 * arg1
 }
 
-fun div(arg0: Int, arg1: Int): Int{
+fun div(arg0: Int, arg1: Int): Int {
     return arg0 / arg1
 }
 
-fun showHelp(){
-    println("""
+fun showHelp() {
+    println(
+        """
         
         Simple Calculator:
             Input: 3 * 4
             Output: 12
-    """.trimIndent())
+    """.trimIndent()
+    )
 }

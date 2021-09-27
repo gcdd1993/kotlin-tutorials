@@ -14,7 +14,7 @@ import kotlin.concurrent.thread
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-suspend fun main(){
+suspend fun main() {
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         log(coroutineContext[Job], throwable)
     }
@@ -37,7 +37,7 @@ suspend fun main(){
     job.join()
 }
 
-suspend fun world(){
+suspend fun world() {
     coroutineScope {
 
     }

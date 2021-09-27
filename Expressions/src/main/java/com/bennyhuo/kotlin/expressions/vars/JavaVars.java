@@ -9,30 +9,13 @@ public class JavaVars {
         final int b = 3;
 
 
-
-
-
-
-
-
-
-
-
-
-
         final int c;
 
-        if(a == 3){
+        if (a == 3) {
             c = 4;
         } else {
             c = 5;
         }
-
-
-
-
-
-
 
 
     }

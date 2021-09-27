@@ -2,7 +2,7 @@ package com.bennyhuo.kotlin.advancedtypes.visibilities.kotlin
 
 class Foo {
 
-    protected fun protectedBar(){
+    protected fun protectedBar() {
 
     }
 

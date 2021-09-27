@@ -1,6 +1,6 @@
 package com.bennyhuo.kotlin.types.smartcasts.java;
 
-public class Person implements Kotliner{
+public class Person implements Kotliner {
     public final String name;
     public final int age;
 

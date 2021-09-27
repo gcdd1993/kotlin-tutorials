@@ -28,10 +28,10 @@ suspend fun main() {
 suspend fun lineCounter(root: File): HashMap<File, Int> {
     return Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1).asCoroutineDispatcher()
         .use {
-            withContext(it){
-                val fileChannel  = walkFile(root)
+            withContext(it) {
+                val fileChannel = walkFile(root)
 
-                val fileLinesChannels = List(5){
+                val fileLinesChannels = List(5) {
                     fileLineCounter(fileChannel)
                 }
 
@@ -47,7 +47,7 @@ fun CoroutineScope.walkFile(root: File): ReceiveChannel<File> {
 }
 
 suspend fun SendChannel<File>.fileWalker(file: File) {
-    if(file.isDirectory){
+    if (file.isDirectory) {
         file.listFiles()?.filter(KotlinFileFilter)?.forEach { fileWalker(it) }
     } else {
         send(file)
@@ -56,7 +56,7 @@ suspend fun SendChannel<File>.fileWalker(file: File) {
 
 fun CoroutineScope.fileLineCounter(input: ReceiveChannel<File>): ReceiveChannel<FileLines> {
     return produce(capacity = Channel.BUFFERED) {
-        for (file in input){
+        for (file in input) {
             file.useLines {
                 send(FileLines(file, it.count()))
             }
@@ -74,7 +74,7 @@ suspend fun CoroutineScope.resultAggregator(channels: List<ReceiveChannel<FileLi
                     it
                 }
             }
-        } ?.let {
+        }?.let {
             map[it.file] = it.lines
         }
     }

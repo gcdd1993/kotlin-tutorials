@@ -3,9 +3,11 @@ package com.bennyhuo.kotlin.advancedtypes.dataclasses.kotlin
 import com.bennyhuo.kotlin.advancedtypes.dataclasses.PoKo
 
 @PoKo
-data class Book(val id: Long,
-                val name: String,
-                val author: Person) {
+data class Book(
+    val id: Long,
+    val name: String,
+    val author: Person
+) {
 
 }
 

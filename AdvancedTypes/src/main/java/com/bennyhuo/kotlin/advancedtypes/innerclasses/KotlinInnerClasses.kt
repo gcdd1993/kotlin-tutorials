@@ -1,10 +1,11 @@
 package com.bennyhuo.kotlin.advancedtypes.innerclasses
 
 fun main() {
-    fun localFunc(){
+    fun localFunc() {
         println("Hello")
     }
-    class LocalClass:  Cloneable, Runnable{
+
+    class LocalClass : Cloneable, Runnable {
         override fun run() {}
     }
 

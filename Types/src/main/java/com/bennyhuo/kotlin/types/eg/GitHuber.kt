@@ -23,7 +23,7 @@ fun main() {
 
     val repository = response.body()
 
-    if(repository == null){
+    if (repository == null) {
         println("Error! ${response.code()} - ${response.message()}")
     } else {
         println(repository.name)
@@ -32,7 +32,8 @@ fun main() {
         println(repository.forks_count)
         println(repository.html_url)
 
-        File("Kotlin.html").writeText("""
+        File("Kotlin.html").writeText(
+            """
             <!DOCTYPE html>
             <html>
             <head>
@@ -46,6 +47,7 @@ fun main() {
                 <p>Forks: ${repository.forks_count}</p>
             </body>
             </html>
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 }

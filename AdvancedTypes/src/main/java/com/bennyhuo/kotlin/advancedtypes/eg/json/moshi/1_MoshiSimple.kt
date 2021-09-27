@@ -7,7 +7,7 @@ import com.squareup.moshi.Moshi
 
 data class Person(val name: String, val age: Int)
 
-fun main(){
+fun main() {
     val moshi = Moshi.Builder().build()
     val jsonAdapter = moshi.adapter(Person::class.java)
     println(jsonAdapter.toJson(Person("Benny Huo", 20)))

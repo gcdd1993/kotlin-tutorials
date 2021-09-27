@@ -1,10 +1,10 @@
 package com.bennyhuo.kotlin.types.extensions
 
-class PoorGuy{
+class PoorGuy {
     var pocket: Double = 0.0
 }
 
-fun PoorGuy.noMoney(){
+fun PoorGuy.noMoney() {
 
 }
 
@@ -26,26 +26,14 @@ interface Guy {
 
         }
 
-    fun noMoney(){
+    fun noMoney() {
         println("no money called.")
     }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 fun String.padding(count: Int, char: Char = ' '): String {
-    val padding = (1 .. count).joinToString(""){ char.toString() }
+    val padding = (1..count).joinToString("") { char.toString() }
     return "${padding}${this}${padding}"
 }
 
@@ -54,7 +42,7 @@ fun String.isEmail(): Boolean {
 }
 
 fun String.times(count: Int): String {
-    return (1 .. count).joinToString("") { this }
+    return (1..count).joinToString("") { this }
 }
 
 fun main() {
@@ -68,7 +56,7 @@ fun main() {
     val stringTimes = String::times
     val stringTimesBound = "*"::times
 
-    arrayOf(1,3,3).forEach {  }
+    arrayOf(1, 3, 3).forEach { }
 
     val x = 2
 }

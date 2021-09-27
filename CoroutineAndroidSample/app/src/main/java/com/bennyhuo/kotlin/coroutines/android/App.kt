@@ -8,7 +8,7 @@ import timber.log.Timber
 lateinit var appContext: Application
     private set
 
-class App: Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -18,7 +18,7 @@ class App: Application() {
 
         GlobalThreadUncaughtExceptionHandler.setUp()
 
-        if(Settings.firstTimeLaunch){
+        if (Settings.firstTimeLaunch) {
             Timber.d("First time launch.")
             Settings.firstTimeLaunch = false
 

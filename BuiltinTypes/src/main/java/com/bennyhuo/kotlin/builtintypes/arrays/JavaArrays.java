@@ -28,7 +28,7 @@ public class JavaArrays {
 
         // Test in an Array
         for (float element : e) {
-            if(element == 1f){
+            if (element == 1f) {
                 System.out.println("1f exists in variable 'e'");
                 break;
             }
@@ -37,13 +37,13 @@ public class JavaArrays {
         //Test not in an Array
         boolean exists = false;
         for (float element : e) {
-            if(element == 1.2f){
+            if (element == 1.2f) {
                 exists = true;
                 break;
             }
         }
 
-        if(!exists){
+        if (!exists) {
             System.out.println("1.2f not exists in variable 'e'");
         }
 

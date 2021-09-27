@@ -24,8 +24,8 @@ class SubType : SuperType<String>()
 fun main() {
     Api::class.declaredFunctions.first { it.name == "getUsers" }
         .returnType.arguments.forEach {
-        println(it)
-    }
+            println(it)
+        }
 
     Api::getUsers.returnType.arguments.forEach {
         println(it)
@@ -33,8 +33,8 @@ fun main() {
 
     Api::class.java.getDeclaredMethod("getUsers")
         .genericReturnType.safeAs<ParameterizedType>()?.actualTypeArguments?.forEach {
-        println(it)
-    }
+            println(it)
+        }
 
     val subType = SubType()
     subType.typeParameter.let(::println)

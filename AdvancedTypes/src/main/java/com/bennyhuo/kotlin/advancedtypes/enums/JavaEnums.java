@@ -17,9 +17,6 @@ public class JavaEnums {
     }
 
 
-
-
-
     public static void main(String... args) {
         System.out.println(State.Idle.getClass().getSuperclass().getSuperclass());
 

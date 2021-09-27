@@ -1,12 +1,15 @@
 package com.bennyhuo.kotlin.advancedtypes.objects.kotlin
 
-object Singleton: Runnable{
+object Singleton : Runnable {
     override fun run() {
 
     }
 
-    @JvmField var x: Int = 2
-    @JvmStatic fun y(){ }
+    @JvmField
+    var x: Int = 2
+    @JvmStatic
+    fun y() {
+    }
 
     init {
 
@@ -15,8 +18,11 @@ object Singleton: Runnable{
 
 class Foo {
     companion object {
-        @JvmField var x: Int = 2
-        @JvmStatic fun y(){  }
+        @JvmField
+        var x: Int = 2
+        @JvmStatic
+        fun y() {
+        }
     }
 }
 

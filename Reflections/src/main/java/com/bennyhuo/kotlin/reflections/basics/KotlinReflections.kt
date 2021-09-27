@@ -10,7 +10,6 @@ fun main() {
     var cls: KClass<String> = String::class
 
 
-
     val property = cls.declaredMemberProperties.firstOrNull()
 
     val mapCls = Map::class
@@ -23,17 +22,17 @@ fun main() {
 }
 
 object B {
-    fun hello(){
+    fun hello() {
 
     }
 }
 
 class A {
-    fun String.hello(){
+    fun String.hello() {
 
     }
 }
 
 open class Super<T>
 
-class Sub: Super<String>()
+class Sub : Super<String>()

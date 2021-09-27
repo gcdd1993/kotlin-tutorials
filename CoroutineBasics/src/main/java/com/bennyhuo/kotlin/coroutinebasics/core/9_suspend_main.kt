@@ -5,7 +5,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.coroutines.startCoroutine
 
-suspend fun main0(){
+suspend fun main0() {
 
 }
 

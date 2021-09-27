@@ -5,7 +5,7 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-inline fun <reified T: AbsModel> modelOf(): ModelDelegate<T> {
+inline fun <reified T : AbsModel> modelOf(): ModelDelegate<T> {
     return ModelDelegate(T::class)
 }
 

@@ -3,7 +3,7 @@ package com.bennyhuo.kotlin.advancedtypes.delegates
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
-class Person(val name: String){
+class Person(val name: String) {
     val firstName by lazy {
         name.split(" ")[0]
     }
@@ -13,8 +13,7 @@ class Person(val name: String){
 }
 
 class StateManager {
-    var state: Int by Delegates.observable(0) {
-        property, oldValue, newValue ->
+    var state: Int by Delegates.observable(0) { property, oldValue, newValue ->
         println("State changed from $oldValue -> $newValue")
     }
 }

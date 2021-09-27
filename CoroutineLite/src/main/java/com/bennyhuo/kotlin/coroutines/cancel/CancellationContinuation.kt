@@ -23,16 +23,15 @@ class CancellationContinuation<T>(private val continuation: Continuation<T>) : C
         get() = state.get() == CancelState.InComplete
 
     override fun resumeWith(result: Result<T>) {
-        state.updateAndGet {
-            prev ->
-            when(prev){
+        state.updateAndGet { prev ->
+            when (prev) {
                 CancelState.InComplete -> {
                     continuation.resumeWith(result)
                     CancelState.Complete(result.getOrNull(), result.exceptionOrNull())
                 }
                 is CancelState.Complete<*> -> throw IllegalStateException("Already completed.")
                 CancelState.Cancelled -> {
-                    CancellationException("Cancelled.").let{
+                    CancellationException("Cancelled.").let {
                         continuation.resumeWith(Result.failure(it))
                         CancelState.Complete(null, it)
                     }

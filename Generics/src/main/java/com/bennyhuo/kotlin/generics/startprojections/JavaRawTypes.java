@@ -15,7 +15,7 @@ public class JavaRawTypes {
         System.out.println(i);
     }
 
-    public static HashMap<String, Integer> getHashMap(){
+    public static HashMap<String, Integer> getHashMap() {
         return new HashMap<String, Integer>();
     }
 

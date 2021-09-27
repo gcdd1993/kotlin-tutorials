@@ -6,7 +6,7 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 
 class HelloWorldGenerator {
-    fun generate(){
+    fun generate() {
         FileSpec.builder("com.bennyhuo.kotlin.annotations", "HelloKapt")
             .addFunction(
                 FunSpec.builder("helloWorld")

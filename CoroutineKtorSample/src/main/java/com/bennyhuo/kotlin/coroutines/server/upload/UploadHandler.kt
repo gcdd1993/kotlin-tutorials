@@ -24,7 +24,7 @@ fun Route.upload() {
         val uploadedFiles = mutableListOf<UploadResponse>()
 
         multipart.forEachPart { part ->
-            when(part){
+            when (part) {
                 is PartData.FileItem -> {
                     val file = File(uploadDir, "upload-${System.currentTimeMillis()}-${part.originalFileName}")
                     part.streamProvider().use { input ->

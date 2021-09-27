@@ -8,7 +8,7 @@ import com.squareup.moshi.Moshi
 @JsonClass(generateAdapter = true)
 data class PersonWithDefaults(val name: String, val age: Int = 18)
 
-fun main(){
+fun main() {
     val moshi = Moshi.Builder()
         //.add(KotlinJsonAdapterFactory()) // implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
         .build()

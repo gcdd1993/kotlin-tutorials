@@ -8,7 +8,7 @@ fun main() {
     }
 }
 
-fun runBlock(block: ()-> Unit){
+fun runBlock(block: () -> Unit) {
     val start = System.currentTimeMillis()
     block()
     println(System.currentTimeMillis() - start)

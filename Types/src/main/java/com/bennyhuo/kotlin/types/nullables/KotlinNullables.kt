@@ -12,19 +12,6 @@ fun main() {
     val length = nullable?.length ?: 0 //elvis  boolean? a : b
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     var x: String = "Hello"
     var y: String? = "World"
 
@@ -38,17 +25,6 @@ fun main() {
     b = a // OK
 
 
-
-
-
-
-
-
-
-
-
-
-
     val person = Person()
     val title = person.title
 
@@ -58,18 +34,6 @@ fun main() {
 
     val files = file.listFiles()
     println(files.size)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

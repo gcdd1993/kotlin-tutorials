@@ -6,7 +6,7 @@ import com.squareup.moshi.Moshi
 //Moshi
 
 @JsonClass(generateAdapter = true)
-data class PersonWithInits(val name: String, val age: Int){
+data class PersonWithInits(val name: String, val age: Int) {
 
     val firstName by lazy {
         name.split(" ")[0]
@@ -18,7 +18,7 @@ data class PersonWithInits(val name: String, val age: Int){
 }
 
 
-fun main(){
+fun main() {
     val moshi = Moshi.Builder()
 //        .add(KotlinJsonAdapterFactory()) // implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
         .build()

@@ -8,7 +8,7 @@ import com.google.gson.Gson
 
 data class PersonWithDefaults(val name: String, val age: Int = 18)
 
-fun main(){
+fun main() {
     val gson = Gson()
     println(gson.toJson(PersonWithDefaults("Benny Huo")))
     println(gson.fromJson("""{"name":"Benny Huo"}""", PersonWithDefaults::class.java))

@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bennyhuo.kotlin.advancedtypes.R
 
-class UserActivity: AppCompatActivity() {
+class UserActivity : AppCompatActivity() {
 
     private val nameView by lazy {
         findViewById<TextView>(R.id.nameView)

@@ -8,13 +8,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Serializable
-data class PersonWithDate(val name: String, val age: Int,
-                          @Serializable(with= DateSerializer::class)
-                          val birthDate: Date
+data class PersonWithDate(
+    val name: String, val age: Int,
+    @Serializable(with = DateSerializer::class)
+    val birthDate: Date
 )
 
 @Serializer(forClass = Date::class)
-object DateSerializer: KSerializer<Date> {
+object DateSerializer : KSerializer<Date> {
     private val df: DateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
 
     override val descriptor: SerialDescriptor = StringDescriptor.withName("Date")
@@ -29,7 +30,7 @@ object DateSerializer: KSerializer<Date> {
 }
 
 @ImplicitReflectionSerializer
-fun main(){
+fun main() {
     println(Json.stringify(PersonWithDate("Benny Huo", 20, Date())))
     println(Json.parse<PersonWithDate>("""{"name":"Benny Huo","age":20,"birthDate":"2019-10-13 15:58"}"""))
 }

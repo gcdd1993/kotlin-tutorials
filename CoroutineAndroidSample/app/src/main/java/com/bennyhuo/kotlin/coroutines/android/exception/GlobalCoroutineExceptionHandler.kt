@@ -6,7 +6,7 @@ import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
 //For coroutines.
-class GlobalCoroutineExceptionHandler: CoroutineExceptionHandler {
+class GlobalCoroutineExceptionHandler : CoroutineExceptionHandler {
     override val key = CoroutineExceptionHandler
 
     override fun handleException(context: CoroutineContext, exception: Throwable) {

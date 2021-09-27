@@ -3,7 +3,7 @@ package com.bennyhuo.kotlin.builtintypes.functions
 fun main(vararg args: String) {
     println(args.contentToString())
 
-    val x:(Foo, String, Long)->Any = Foo::bar
+    val x: (Foo, String, Long) -> Any = Foo::bar
     val x0: Function3<Foo, String, Long, Any> = Foo::bar
     // (Foo, String, Long)->Any = Foo.(String, Long)->Any = Function3<Foo, String, Long, Any>
 
@@ -12,10 +12,9 @@ fun main(vararg args: String) {
 
     yy(x)
 
-    val f: ()->Unit = ::foo
-    val g: (Int) ->String = ::foo
-    val h: (Foo, String, Long)->Any
-            = Foo::bar
+    val f: () -> Unit = ::foo
+    val g: (Int) -> String = ::foo
+    val h: (Foo, String, Long) -> Any = Foo::bar
 
     multiParameters(1, 2, 3, 4)
 
@@ -27,22 +26,26 @@ fun main(vararg args: String) {
 
 }
 
-fun yy(p: (Foo, String, Long) -> Any){
+fun yy(p: (Foo, String, Long) -> Any) {
     //p(Foo(), "Hello", 3L)
 }
 
 class Foo {
-    fun bar(p0: String, p1: Long): Any{ TODO() }
+    fun bar(p0: String, p1: Long): Any {
+        TODO()
+    }
 }
 
-fun foo() { }
-fun foo(p0: Int): String { TODO() }
-
-fun defaultParameter(x: Int = 5, y: String, z: Long = 0L){
+fun foo() {}
+fun foo(p0: Int): String {
     TODO()
 }
 
-fun multiParameters(vararg ints: Int){
+fun defaultParameter(x: Int = 5, y: String, z: Long = 0L) {
+    TODO()
+}
+
+fun multiParameters(vararg ints: Int) {
     println(ints.contentToString())
 }
 

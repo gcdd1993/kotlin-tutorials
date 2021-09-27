@@ -8,7 +8,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import java.util.concurrent.Executors
 
-fun sequences(){
+fun sequences() {
     val ints = sequence {
         yield(1)
         //delay(100)
@@ -17,7 +17,7 @@ fun sequences(){
     }
 }
 
-suspend fun flows(){
+suspend fun flows() {
     val intFlow = flow {
         emit(1)
         delay(100)
@@ -32,11 +32,11 @@ suspend fun flows(){
     }.join()
 }
 
-suspend fun exception(){
+suspend fun exception() {
     flow<Int> {
         emit(1)
         throw ArithmeticException("Div 0")
-    }.catch {t: Throwable ->
+    }.catch { t: Throwable ->
         log("caught error: $t")
     }.onCompletion { t: Throwable? ->
         log("finally.")
@@ -55,13 +55,13 @@ suspend fun exception(){
 //    }
 }
 
-fun fromCollections(){
-    listOf(1,2,3,4).asFlow()
-    setOf(1,2,3,4).asFlow()
-    flowOf(1,2,3,4)
+fun fromCollections() {
+    listOf(1, 2, 3, 4).asFlow()
+    setOf(1, 2, 3, 4).asFlow()
+    flowOf(1, 2, 3, 4)
 }
 
-suspend fun fromChannel(){
+suspend fun fromChannel() {
     val channel = Channel<Int>()
     channel.consumeAsFlow()
 
@@ -74,13 +74,13 @@ suspend fun fromChannel(){
 
     channelFlow { // good
         send(1)
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             send(2)
         }
     }
 }
 
-suspend fun backPressure(){
+suspend fun backPressure() {
     flow {
         emit(1)
         delay(50)
@@ -92,7 +92,7 @@ suspend fun backPressure(){
     }
 }
 
-fun rxjava(){
+fun rxjava() {
     Observable.create<Int> {
         it.onNext(1)
         it.onNext(2)
@@ -105,6 +105,6 @@ fun rxjava(){
         }
 }
 
-suspend fun main(){
+suspend fun main() {
     backPressure()
 }

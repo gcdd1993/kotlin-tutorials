@@ -27,9 +27,6 @@ fun main() {
     //rxjava
 
 
-
-
-
     //region
 //    for (i in 0..10) {
 //        println(i)

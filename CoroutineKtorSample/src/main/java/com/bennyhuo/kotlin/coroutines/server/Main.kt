@@ -12,7 +12,7 @@ import io.ktor.routing.Routing
 import io.ktor.routing.routing
 import io.ktor.serialization.serialization
 
-fun Application.main(){
+fun Application.main() {
     install(DefaultHeaders)
     install(CallLogging)
     install(ContentNegotiation) { serialization() }

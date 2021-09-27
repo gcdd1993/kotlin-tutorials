@@ -4,11 +4,11 @@ public class ApiJava {
     private CoreApiJavaA coreApiJavaA = new CoreApiJavaA();
     private CoreApiJavaB coreApiJavaB = new CoreApiJavaB();
 
-    public void a(){
+    public void a() {
         coreApiJavaA.a();
     }
 
-    public void b(){
+    public void b() {
         coreApiJavaB.b();
     }
 }

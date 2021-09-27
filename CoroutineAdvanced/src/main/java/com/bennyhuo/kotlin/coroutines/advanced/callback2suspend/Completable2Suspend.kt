@@ -16,21 +16,20 @@ suspend fun main() {
 }
 
 suspend fun <T> CompletableFuture<T>.await(): T {
-    if(isDone){
+    if (isDone) {
         try {
             return get()
         } catch (e: ExecutionException) {
             throw e.cause ?: e
         }
     }
-    return suspendCancellableCoroutine {
-        cancellableContinuation ->
+    return suspendCancellableCoroutine { cancellableContinuation ->
         cancellableContinuation.invokeOnCancellation {
             cancel(true)
         }
 
         whenComplete { value, throwable ->
-            if(throwable == null){
+            if (throwable == null) {
                 cancellableContinuation.resume(value)
             } else {
                 cancellableContinuation.resumeWithException(throwable.cause ?: throwable)

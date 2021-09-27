@@ -9,7 +9,7 @@ fun main() {
         }
     }
 
-    val onEvent2 = EventManager.OnEventListener{
+    val onEvent2 = EventManager.OnEventListener {
         println("onEvent $it")
     }
 

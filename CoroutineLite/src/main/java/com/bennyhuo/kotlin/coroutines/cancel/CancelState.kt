@@ -5,7 +5,7 @@ sealed class CancelState {
         return "CancelState.${javaClass.simpleName}"
     }
 
-    object InComplete: CancelState()
-    class Complete<T>(val value: T? = null, val exception: Throwable? = null): CancelState()
-    object Cancelled: CancelState()
+    object InComplete : CancelState()
+    class Complete<T>(val value: T? = null, val exception: Throwable? = null) : CancelState()
+    object Cancelled : CancelState()
 }

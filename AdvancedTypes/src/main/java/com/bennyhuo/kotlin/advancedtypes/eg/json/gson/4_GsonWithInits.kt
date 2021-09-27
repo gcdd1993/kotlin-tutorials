@@ -8,7 +8,7 @@ import com.google.gson.GsonBuilder
 //Gson
 
 @PoKo // for noArg
-data class PersonWithInits(val name: String, val age: Int){
+data class PersonWithInits(val name: String, val age: Int) {
 
     val firstName by lazy {
         name.split(" ")[0]
@@ -23,7 +23,7 @@ data class PersonWithInits(val name: String, val age: Int){
 }
 
 // Exclude Lazy values.
-object LazyExclusionStrategy: ExclusionStrategy {
+object LazyExclusionStrategy : ExclusionStrategy {
     override fun shouldSkipClass(clazz: Class<*>) = false
 
     override fun shouldSkipField(f: FieldAttributes): Boolean {
@@ -31,7 +31,7 @@ object LazyExclusionStrategy: ExclusionStrategy {
     }
 }
 
-fun main(){
+fun main() {
     val gson = GsonBuilder()
         .addSerializationExclusionStrategy(LazyExclusionStrategy)
         .addDeserializationExclusionStrategy(LazyExclusionStrategy)

@@ -9,7 +9,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    maven{
+    maven {
         url "http://maven.aliyun.com/nexus/content/groups/public"
     }
 }
@@ -23,7 +23,7 @@ dependencies {
 }
 
 compileKotlin {
-    kotlinOptions{
+    kotlinOptions {
         jvmTarget = "1.8"
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }

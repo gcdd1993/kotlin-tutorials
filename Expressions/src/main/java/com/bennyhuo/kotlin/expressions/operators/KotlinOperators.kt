@@ -27,7 +27,7 @@ fun main() {
     map.set("World", 4)
 
 
-    val func = fun(){
+    val func = fun() {
         println("Hello")
     }
 
@@ -62,6 +62,6 @@ infix fun String.rotate(count: Int): String {
 class Book
 class Desk
 
-infix fun Book.on(desk: Desk){
+infix fun Book.on(desk: Desk) {
 
 }

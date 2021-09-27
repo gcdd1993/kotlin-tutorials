@@ -33,11 +33,11 @@ public class JavaSams {
         });
     }
 
-    public static void submit(Function function){
+    public static void submit(Function function) {
         function.apply();
     }
 
-    public static void submit(Invokable invokable){
+    public static void submit(Invokable invokable) {
         invokable.invoke();
     }
 }

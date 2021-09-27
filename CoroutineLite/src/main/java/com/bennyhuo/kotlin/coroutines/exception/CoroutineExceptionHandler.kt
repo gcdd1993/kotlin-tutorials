@@ -3,8 +3,8 @@ package com.bennyhuo.kotlin.coroutines.exception
 import kotlin.coroutines.AbstractCoroutineContextElement
 import kotlin.coroutines.CoroutineContext
 
-interface CoroutineExceptionHandler: CoroutineContext.Element {
-    companion object Key: CoroutineContext.Key<CoroutineExceptionHandler>
+interface CoroutineExceptionHandler : CoroutineContext.Element {
+    companion object Key : CoroutineContext.Key<CoroutineExceptionHandler>
 
     fun handleException(context: CoroutineContext, exception: Throwable)
 }

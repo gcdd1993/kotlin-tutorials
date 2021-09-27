@@ -17,7 +17,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 
 @SupportedAnnotationTypes("com.bennyhuo.kotlin.annotations.apt.ModelMap")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-class ModelMapProcessor: AbstractProcessor() {
+class ModelMapProcessor : AbstractProcessor() {
 
     override fun init(processingEnv: ProcessingEnvironment) {
         super.init(processingEnv)
@@ -28,8 +28,7 @@ class ModelMapProcessor: AbstractProcessor() {
 //fun <V> Map<String, V>.toSample() = Sample(this["a"] as Int, this["b"] as String)
     override fun process(annotations: MutableSet<out TypeElement>, roundEnv: RoundEnvironment): Boolean {
         roundEnv.getElementsAnnotatedWith(ModelMap::class.java)
-            .forEach {
-                element ->
+            .forEach { element ->
                 element.enclosedElements.filterIsInstance<ExecutableElement>()
                     .firstOrNull { it.simpleName() == "<init>" }
                     ?.let {
@@ -38,7 +37,7 @@ class ModelMapProcessor: AbstractProcessor() {
                             .addFunction(
                                 FunSpec.builder("toMap")
                                     .receiver(typeElement.asType().asKotlinTypeName())
-                                    .addStatement("return mapOf(${it.parameters.joinToString {""""${it.simpleName()}" to ${it.simpleName()}""" }})")
+                                    .addStatement("return mapOf(${it.parameters.joinToString { """"${it.simpleName()}" to ${it.simpleName()}""" }})")
                                     .build()
                             )
                             .addFunction(
@@ -46,7 +45,7 @@ class ModelMapProcessor: AbstractProcessor() {
                                     .addTypeVariable(TypeVariableName("V"))
                                     .receiver(MAP.parameterizedBy(STRING, TypeVariableName("V")))
                                     .addStatement(
-                                        "return ${typeElement.simpleName()}(${it.parameters.joinToString{ """this["${it.simpleName()}"] as %T """ } })",
+                                        "return ${typeElement.simpleName()}(${it.parameters.joinToString { """this["${it.simpleName()}"] as %T """ }})",
                                         *it.parameters.map { it.asType().asKotlinTypeName() }.toTypedArray()
                                     )
                                     .build()

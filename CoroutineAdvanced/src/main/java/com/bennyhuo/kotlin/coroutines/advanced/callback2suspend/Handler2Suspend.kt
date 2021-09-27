@@ -26,7 +26,7 @@ suspend fun <T> Handler.runDelay(delay: Long, block: () -> T) = suspendCancellab
     val message = Message.obtain(this) {
         try {
             continuation.resume(block())
-        } catch (e: Exception){
+        } catch (e: Exception) {
             continuation.resumeWithException(e)
         }
     }.also {
@@ -47,7 +47,7 @@ suspend fun main() {
     GlobalScope.launch {
         val handler = Handler(Looper.getMainLooper())
         val result = handler.run { "Hello" }
-        val delayedResult = handler.runDelay(1000){ "World" }
+        val delayedResult = handler.runDelay(1000) { "World" }
         log(result, delayedResult)
         Looper.getMainLooper().quit()
     }

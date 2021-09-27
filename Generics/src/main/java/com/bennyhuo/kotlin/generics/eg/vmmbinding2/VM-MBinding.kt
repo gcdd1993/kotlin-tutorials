@@ -32,7 +32,7 @@ object Models {
         modelMap[name] = this
     }
 
-    fun <T: AbsModel> String.get(): T {
+    fun <T : AbsModel> String.get(): T {
         return modelMap[this] as T
     }
 }
@@ -44,7 +44,7 @@ fun initModels() {
 }
 
 object ModelDelegate {
-    operator fun <T: AbsModel> getValue(thisRef: Any, property: KProperty<*>): T {
+    operator fun <T : AbsModel> getValue(thisRef: Any, property: KProperty<*>): T {
         return Models.run {
             property.name.capitalize().get()
         }

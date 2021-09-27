@@ -9,7 +9,7 @@ public class SimpleClass
         this.x = x;
     }
 
-    public void y(){
+    public void y() {
 
     }
 

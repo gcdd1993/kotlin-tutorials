@@ -13,12 +13,12 @@ class MainViewModel : ViewModel() {
 
     val downloadStatusLiveData = MutableLiveData<DownloadStatus>(None)
 
-    suspend fun download(url: String, fileName: String){
+    suspend fun download(url: String, fileName: String) {
         DownloadManager.download(url, fileName)
-                .flowOn(Dispatchers.IO)
-                .collect {
-                    downloadStatusLiveData.value = it
-                }
+            .flowOn(Dispatchers.IO)
+            .collect {
+                downloadStatusLiveData.value = it
+            }
     }
 
 }

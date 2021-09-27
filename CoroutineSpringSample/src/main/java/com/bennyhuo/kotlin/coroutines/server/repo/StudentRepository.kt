@@ -8,13 +8,13 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import reactor.core.publisher.Mono
 
 @Table("student")
-data class Student (
+data class Student(
     @Column("name") val name: String,
     @Column("score") val score: Int,
     @Id val id: Long? = null
 )
 
-interface StudentRepository: ReactiveCrudRepository<Student, Long> {
+interface StudentRepository : ReactiveCrudRepository<Student, Long> {
 
     @Query("select * from student where name = :name")
     fun findByName(name: String): Mono<Student>

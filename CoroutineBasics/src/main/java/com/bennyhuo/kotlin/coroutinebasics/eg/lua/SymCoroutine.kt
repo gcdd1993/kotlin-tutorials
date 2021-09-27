@@ -27,9 +27,9 @@ class SymCoroutine<T>(
     }
 
     inner class SymCoroutineBody {
-        private tailrec suspend fun <P> transferInner(symCoroutine: SymCoroutine<P>, value: Any?): T{
-            if(this@SymCoroutine.isMain){
-                return if(symCoroutine.isMain){
+        private tailrec suspend fun <P> transferInner(symCoroutine: SymCoroutine<P>, value: Any?): T {
+            if (this@SymCoroutine.isMain) {
+                return if (symCoroutine.isMain) {
                     value as T
                 } else {
                     val parameter = symCoroutine.coroutine.resume(value as P)
@@ -37,13 +37,13 @@ class SymCoroutine<T>(
                 }
             } else {
                 this@SymCoroutine.coroutine.run {
-                   return yield(Parameter(symCoroutine, value as P))
+                    return yield(Parameter(symCoroutine, value as P))
                 }
             }
         }
 
         suspend fun <P> transfer(symCoroutine: SymCoroutine<P>, value: P): T {
-           return transferInner(symCoroutine, value)
+            return transferInner(symCoroutine, value)
         }
     }
 
@@ -57,7 +57,7 @@ class SymCoroutine<T>(
     private val coroutine = Coroutine<T, Parameter<*>>(context) {
         Parameter(this@SymCoroutine, suspend {
             block(body, it)
-            if(this@SymCoroutine.isMain) Unit else throw IllegalStateException("SymCoroutine cannot be dead.")
+            if (this@SymCoroutine.isMain) Unit else throw IllegalStateException("SymCoroutine cannot be dead.")
         }() as T)
     }
 
@@ -65,7 +65,7 @@ class SymCoroutine<T>(
         throw IllegalStateException("SymCoroutine cannot be dead!")
     }
 
-    suspend fun start(value: T){
+    suspend fun start(value: T) {
         coroutine.resume(value)
     }
 }

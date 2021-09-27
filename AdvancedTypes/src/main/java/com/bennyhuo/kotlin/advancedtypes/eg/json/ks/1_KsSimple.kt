@@ -13,7 +13,7 @@ data class Person(val name: String, val age: Int)
 
 
 @ImplicitReflectionSerializer
-fun main(){
+fun main() {
     println(Json.stringify(Person("Benny Huo", 20)))
     println(Json.parse<Person>("""{"name":"Benny Huo","age":20}"""))
 }

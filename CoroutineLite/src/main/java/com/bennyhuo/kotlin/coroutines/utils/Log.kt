@@ -14,7 +14,7 @@ val now = {
 
 fun log(vararg msg: Any?) = println("${now()} [${Thread.currentThread().name}] ${msg.joinToString(" ")}")
 
-fun stackTrace(){
+fun stackTrace() {
     Throwable().printStackTrace(System.out)
 }
 

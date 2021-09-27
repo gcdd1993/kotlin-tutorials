@@ -1,7 +1,7 @@
 package com.bennyhuo.kotlin.advancedtypes.enums
 
-enum class State: Runnable{
-    Idle, Busy{
+enum class State : Runnable {
+    Idle, Busy {
         override fun run() {
             println("For Busy State.")
         }
@@ -44,16 +44,20 @@ fun main() {
 
     val state = State.Idle
     val value = when (state) {
-        State.Idle -> { 0 }
-        State.Busy -> { 1 }
+        State.Idle -> {
+            0
+        }
+        State.Busy -> {
+            1
+        }
     }
 
-    if(state <= State.Idle){
+    if (state <= State.Idle) {
 
     }
 
 
-    val colorRange = Color.White .. Color.Green
+    val colorRange = Color.White..Color.Green
     val color = Color.Blue
     println(color in colorRange)
 }

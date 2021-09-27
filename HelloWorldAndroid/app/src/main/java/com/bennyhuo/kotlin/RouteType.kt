@@ -8,16 +8,16 @@ enum class RouteTypeEnum {
 }
 
 
-fun setRouteType(@RouteTypeDef routeType: Int){
+fun setRouteType(@RouteTypeDef routeType: Int) {
 
 }
 
-fun setRouteType(routeType: RouteTypeInline){
+fun setRouteType(routeType: RouteTypeInline) {
 
 }
 
 
-fun main(){
+fun main() {
     // IntDef 在 Kotlin 中不生效
     setRouteType(4)
     setRouteType(RouteTypes.BUS)

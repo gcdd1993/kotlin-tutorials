@@ -32,7 +32,7 @@ sealed class CoroutineState {
     }
 
 
-    fun clear(){
+    fun clear() {
         this.disposableList = DisposableList.Nil
     }
 
@@ -40,7 +40,7 @@ sealed class CoroutineState {
         return "CoroutineState.${this.javaClass.simpleName}"
     }
 
-    class InComplete: CoroutineState()
-    class Cancelling: CoroutineState()
-    class Complete<T>(val value: T? = null, val exception: Throwable? = null): CoroutineState()
+    class InComplete : CoroutineState()
+    class Cancelling : CoroutineState()
+    class Complete<T>(val value: T? = null, val exception: Throwable? = null) : CoroutineState()
 }

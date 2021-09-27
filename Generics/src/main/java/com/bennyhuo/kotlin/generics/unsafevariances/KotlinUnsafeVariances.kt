@@ -14,11 +14,11 @@ fun main() {
 //    println(int)
 }
 
-class Dustbin<in T>{
+class Dustbin<in T> {
 
     private val list = mutableListOf<@UnsafeVariance T>()
 
-    fun put(t: T){
+    fun put(t: T) {
         list += t
     }
 
@@ -33,12 +33,14 @@ sealed class List<out T> {
         }
         return containsInner(this, t)
     }
+
     object Nil : List<Nothing>() {
         override fun toString(): String {
             return "Nil"
         }
 
     }
+
     data class Cons<T>(val head: T, val tail: List<T>) : List<T>() {
         override fun toString(): String {
             return "$head, $tail"

@@ -9,7 +9,7 @@ import kotlinx.serialization.stringify
 // KS
 
 @Serializable
-data class PersonWithInits(val name: String, val age: Int){
+data class PersonWithInits(val name: String, val age: Int) {
 
     val firstName by lazy {
         name.split(" ")[0]
@@ -22,7 +22,7 @@ data class PersonWithInits(val name: String, val age: Int){
 
 
 @ImplicitReflectionSerializer
-fun main(){
+fun main() {
     println(Json.stringify(PersonWithInits("Benny Huo", 18)))
     val personWithInits = Json.parse<PersonWithInits>("""{"name":"Benny Huo","age":20}""")
 //    val personWithInits = Json.parse<PersonWithInits>("""{"name":"Benny Huo","age":20, "lastName":"Secret"}""")

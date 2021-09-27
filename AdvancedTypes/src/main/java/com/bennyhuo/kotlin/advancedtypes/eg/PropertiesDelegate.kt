@@ -6,7 +6,7 @@ import java.net.URL
 import java.util.*
 import kotlin.reflect.KProperty
 
-class PropertiesDelegate(private val path: String, private val defaultValue: String = ""){
+class PropertiesDelegate(private val path: String, private val defaultValue: String = "") {
 
     private lateinit var url: URL
 
@@ -46,11 +46,11 @@ class PropertiesDelegate(private val path: String, private val defaultValue: Str
     }
 }
 
-abstract class AbsProperties(path: String){
+abstract class AbsProperties(path: String) {
     protected val prop = PropertiesDelegate(path)
 }
 
-class Config: AbsProperties("Config.properties"){
+class Config : AbsProperties("Config.properties") {
     var author by prop
     var version by prop
     var desc by prop

@@ -3,7 +3,7 @@ package com.bennyhuo.kotlin.coroutinebasics.common
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
 
-object DefaultDispatcher: Dispatcher {
+object DefaultDispatcher : Dispatcher {
 
     private val threadGroup = ThreadGroup("DefaultDispatcher")
 

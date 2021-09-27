@@ -26,7 +26,7 @@ fun main() {
         else -> 20
     }
 
-    c = when(val input = readLine()){
+    c = when (val input = readLine()) {
         null -> 0
         else -> input.length
     }
@@ -35,14 +35,14 @@ fun main() {
 
     try {
         c = a / b
-    }catch (e: Exception){
+    } catch (e: Exception) {
         e.printStackTrace()
         c = 0
     }
 
     c = try {
         a / b
-    } catch (e: ArithmeticException){
+    } catch (e: ArithmeticException) {
         2
     } catch (e: Exception) {
         e.printStackTrace()
@@ -51,7 +51,7 @@ fun main() {
 
     c = try {
         a / b
-    } catch (e: ArithmeticException){
+    } catch (e: ArithmeticException) {
         2
     } catch (e: Exception) {
         e.printStackTrace()

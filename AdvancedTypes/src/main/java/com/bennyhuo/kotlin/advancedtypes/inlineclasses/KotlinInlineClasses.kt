@@ -1,8 +1,7 @@
 package com.bennyhuo.kotlin.advancedtypes.inlineclasses
 
-inline class BoxInt(val value: Int): Comparable<Int> {
-    override fun compareTo(other: Int)
-            = value.compareTo(other)
+inline class BoxInt(val value: Int) : Comparable<Int> {
+    override fun compareTo(other: Int) = value.compareTo(other)
 
     operator fun inc(): BoxInt {
         return BoxInt(value + 1)
@@ -45,7 +44,7 @@ inline class Color(val value: UInt) {
 
 fun main() {
     var boxInt = BoxInt(5)
-    if(boxInt < 10){
+    if (boxInt < 10) {
         println("value is less than 10")
     }
 

@@ -11,7 +11,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import kotlin.coroutines.*
 
-suspend fun foo(){ }
+suspend fun foo() {}
 
 suspend fun bar(a: Int): String {
     return "Hello"
@@ -24,9 +24,10 @@ suspend fun bar(a: Int): String {
 //}
 
 suspend fun getUserSuspend(name: String) = suspendCoroutine<User> { continuation ->
-    githubApi.getUserCallback(name).enqueue(object: Callback<User>{
+    githubApi.getUserCallback(name).enqueue(object : Callback<User> {
         override fun onFailure(call: Call<User>, t: Throwable) =
             continuation.resumeWithException(t)
+
         override fun onResponse(call: Call<User>, response: Response<User>) =
             response.takeIf { it.isSuccessful }?.body()?.let(continuation::resume)
                 ?: continuation.resumeWithException(HttpException(response))
@@ -34,13 +35,13 @@ suspend fun getUserSuspend(name: String) = suspendCoroutine<User> { continuation
 }
 
 
-suspend fun main(){
+suspend fun main() {
     val user = getUserSuspend("bennyhuo")
     showUser(user)
 
     suspend {
 
-    }.createCoroutine(object: Continuation<Unit>{
+    }.createCoroutine(object : Continuation<Unit> {
         override val context = EmptyCoroutineContext
 
         override fun resumeWith(result: Result<Unit>) {
@@ -50,7 +51,7 @@ suspend fun main(){
 
     suspend {
 
-    }.startCoroutine(object: Continuation<Unit>{
+    }.startCoroutine(object : Continuation<Unit> {
         override val context = EmptyCoroutineContext
 
         override fun resumeWith(result: Result<Unit>) {
@@ -60,7 +61,7 @@ suspend fun main(){
 
     suspend {
 
-    }.startCoroutine(object: Continuation<Unit>{
+    }.startCoroutine(object : Continuation<Unit> {
         override val context = DispatcherContext(HandlerDispatcher)
 
         override fun resumeWith(result: Result<Unit>) {
@@ -70,7 +71,7 @@ suspend fun main(){
 
     suspend {
 
-    }.startCoroutine(object: Continuation<Unit>{
+    }.startCoroutine(object : Continuation<Unit> {
         override val context = DispatcherContext(HandlerDispatcher)
 
         override fun resumeWith(result: Result<Unit>) {

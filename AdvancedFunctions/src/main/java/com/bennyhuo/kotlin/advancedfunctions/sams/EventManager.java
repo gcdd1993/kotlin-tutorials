@@ -10,11 +10,11 @@ public class EventManager {
 
     private HashSet<OnEventListener> onEventListeners = new HashSet<>();
 
-    public void addOnEventListener(OnEventListener onEventListener){
+    public void addOnEventListener(OnEventListener onEventListener) {
         this.onEventListeners.add(onEventListener);
     }
 
-    public void removeOnEventListener(OnEventListener onEventListener){
+    public void removeOnEventListener(OnEventListener onEventListener) {
         this.onEventListeners.remove(onEventListener);
     }
 }

@@ -17,7 +17,7 @@ public class JavaBasicTypes {
         String j = "I❤️China";
         System.out.println("Value of String 'j' is: " + j);
         System.out.println("Length of String 'j' is: " + j.length());
-        System.out.printf("Length of String 'j' is: %d\n",  j.length());
+        System.out.printf("Length of String 'j' is: %d\n", j.length());
 
         String k = "Today is a sunny day.";
         String m = new String("Today is a sunny day.");

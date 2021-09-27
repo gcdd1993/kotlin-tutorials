@@ -12,15 +12,15 @@ fun main() {
 
     val stringList = ArrayList<String>()
 
-    for (i in 0 .. 10){
+    for (i in 0..10) {
         stringList.add("num: $i")
     }
 
-    for (i in 0 .. 10){
+    for (i in 0..10) {
         stringList += "num: $i"
     }
 
-    for (i in 0 .. 10){
+    for (i in 0..10) {
         stringList -= "num: $i"
     }
 

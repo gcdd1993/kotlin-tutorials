@@ -25,7 +25,7 @@ fun main() {
         println("Hello")
     }
 
-    submit {  }
+    submit { }
 }
 
 fun Runnable(block: () -> Unit): Runnable {
@@ -36,7 +36,7 @@ fun Runnable(block: () -> Unit): Runnable {
     }
 }
 
-fun submitRunnable(runnable: Runnable){
+fun submitRunnable(runnable: Runnable) {
     runnable.run()
 }
 
@@ -44,9 +44,9 @@ fun submit(invokable: Invokable) {
     invokable.invoke()
 }
 
-typealias FunctionX = ()->Unit
+typealias FunctionX = () -> Unit
 
-fun submit(lambda: FunctionX){
+fun submit(lambda: FunctionX) {
 
 }
 

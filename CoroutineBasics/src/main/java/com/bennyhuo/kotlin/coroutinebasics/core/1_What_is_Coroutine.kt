@@ -12,6 +12,7 @@ fun async() {
         override fun onFailure(call: Call<User>, t: Throwable) {
             showError(t)
         }
+
         override fun onResponse(call: Call<User>, response: Response<User>) {
             response.body()?.let(::showUser) ?: showError(NullPointerException())
         }
@@ -19,13 +20,14 @@ fun async() {
 }
 
 fun asyncLoop() {
-    val names = arrayOf("abreslav","udalov", "yole")
+    val names = arrayOf("abreslav", "udalov", "yole")
     names.forEach { name ->
         val call = githubApi.getUserCallback(name)
         call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
                 showError(t)
             }
+
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 response.body()?.let(::showUser) ?: showError(NullPointerException())
             }
@@ -33,8 +35,8 @@ fun asyncLoop() {
     }
 }
 
-suspend fun coroutine(){
-    val names = arrayOf("abreslav","udalov", "yole")
+suspend fun coroutine() {
+    val names = arrayOf("abreslav", "udalov", "yole")
     names.forEach { name ->
         try {
             val user = githubApi.getUserSuspend(name)
@@ -45,8 +47,8 @@ suspend fun coroutine(){
     }
 }
 
-suspend fun coroutineLoop(){
-    val names = arrayOf("abreslav","udalov", "yole")
+suspend fun coroutineLoop() {
+    val names = arrayOf("abreslav", "udalov", "yole")
     val users = names.map { name ->
         githubApi.getUserSuspend(name)
     }

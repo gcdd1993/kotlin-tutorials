@@ -15,7 +15,8 @@ import kotlin.reflect.full.valueParameters
 data class User(
     var login: String,
     var location: String,
-    var bio: String)
+    var bio: String
+)
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS)
@@ -66,42 +67,36 @@ object RetroApi {
     val okHttp = OkHttpClient()
     val gson = Gson()
 
-    val enclosing = {
-        cls: Class<*> ->
+    val enclosing = { cls: Class<*> ->
         var currentCls: Class<*>? = cls
         sequence {
-            while(currentCls != null){
+            while (currentCls != null) {
                 currentCls = currentCls?.also { yield(it) }?.enclosingClass
             }
         }
     }
 
     inline fun <reified T> create(): T {
-        val functionMap = T::class.functions.map{ it.name to it }.toMap()
+        val functionMap = T::class.functions.map { it.name to it }.toMap()
         val interfaces = enclosing(T::class.java).takeWhile { it.isInterface }.toList()
 
-        val apiPath = interfaces.foldRight(StringBuilder()) {
-            clazz, acc ->
+        val apiPath = interfaces.foldRight(StringBuilder()) { clazz, acc ->
             acc.append(clazz.getAnnotation(Api::class.java)
                 ?.url?.takeIf { it.isNotEmpty() }
-                ?:clazz.name).append("/")
+                ?: clazz.name).append("/")
         }.toString()
 
-        return Proxy.newProxyInstance(RetroApi.javaClass.classLoader, arrayOf(T::class.java)) {
-            proxy, method, args ->
-            functionMap[method.name]?.takeIf { it.isAbstract }?.let {
-                function ->
+        return Proxy.newProxyInstance(RetroApi.javaClass.classLoader, arrayOf(T::class.java)) { proxy, method, args ->
+            functionMap[method.name]?.takeIf { it.isAbstract }?.let { function ->
                 val parameterMap = function.valueParameters.map {
                     it.name to args[it.index - 1]
                 }.toMap()
 
                 //{name}
-                val endPoint = function.findAnnotation<Get>()!!.url.takeIf { it.isNotEmpty() }?: function.name
-                val compiledEndPoint = Regex(PATH_PATTERN).findAll(endPoint).map {
-                    matchResult ->
+                val endPoint = function.findAnnotation<Get>()!!.url.takeIf { it.isNotEmpty() } ?: function.name
+                val compiledEndPoint = Regex(PATH_PATTERN).findAll(endPoint).map { matchResult ->
                     matchResult.groups[1]!!.range to parameterMap[matchResult.groups[2]!!.value]
-                }.fold(endPoint) {
-                    acc, pair ->
+                }.fold(endPoint) { acc, pair ->
                     acc.replaceRange(pair.first, pair.second.toString())
                 }
                 val url = apiPath + compiledEndPoint

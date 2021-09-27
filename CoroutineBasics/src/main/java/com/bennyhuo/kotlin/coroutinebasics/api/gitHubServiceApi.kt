@@ -10,14 +10,14 @@ import retrofit2.http.Path
 
 val githubApi by lazy {
     val retrofit = retrofit2.Retrofit.Builder()
-            .client(OkHttpClient.Builder().addInterceptor(Interceptor {
-                it.proceed(it.request()).apply {
-                    log("request: ${code()}")
-                }
-            }).build())
-            .baseUrl("https://api.github.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        .client(OkHttpClient.Builder().addInterceptor(Interceptor {
+            it.proceed(it.request()).apply {
+                log("request: ${code()}")
+            }
+        }).build())
+        .baseUrl("https://api.github.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
     retrofit.create(GitHubApi::class.java)
 }

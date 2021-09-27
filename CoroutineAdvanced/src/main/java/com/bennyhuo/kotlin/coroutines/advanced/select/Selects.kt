@@ -12,15 +12,15 @@ val localDir = File("localCache").also { it.mkdirs() }
 
 val gson = Gson()
 
-fun CoroutineScope.getUserFromApi(login: String) = async(Dispatchers.IO){
+fun CoroutineScope.getUserFromApi(login: String) = async(Dispatchers.IO) {
     gitHubServiceApi.getUserSuspend(login)
 }
 
-fun CoroutineScope.getUserFromLocal(login:String) = async(Dispatchers.IO){
+fun CoroutineScope.getUserFromLocal(login: String) = async(Dispatchers.IO) {
     File(localDir, login).takeIf { it.exists() }?.readText()?.let { gson.fromJson(it, User::class.java) }
 }
 
-fun cacheUser(login: String, user: User){
+fun cacheUser(login: String, user: User) {
     File(localDir, login).writeText(gson.toJson(user))
 }
 

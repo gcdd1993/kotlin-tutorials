@@ -1,8 +1,8 @@
 package com.bennyhuo.kotlin.expressions.eg
 
-class Person(val age: Int, val name: String){
+class Person(val age: Int, val name: String) {
     override fun equals(other: Any?): Boolean {
-        val other = (other as? Person)?: return false
+        val other = (other as? Person) ?: return false
         return other.age == age && other.name == name
     }
 
@@ -24,7 +24,7 @@ fun main() {
     // a moment later
     println(persons.size)
 
-    val person2 = Person(person.age+1, person.name)
+    val person2 = Person(person.age + 1, person.name)
 
     persons -= person
 

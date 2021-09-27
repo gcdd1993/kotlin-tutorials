@@ -5,6 +5,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import timber.log.Timber
 
-val okHttpClient = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor{
-    message -> Timber.d(message)
+val okHttpClient = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor { message ->
+    Timber.d(message)
 }.setLevel(Level.BASIC)).build()

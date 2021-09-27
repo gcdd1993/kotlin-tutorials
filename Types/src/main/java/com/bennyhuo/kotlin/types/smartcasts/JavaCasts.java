@@ -8,10 +8,9 @@ public class JavaCasts {
 
 
         Kotliner kotliner = new Person("benny", 20);
-        if(kotliner instanceof Person){
+        if (kotliner instanceof Person) {
             System.out.println(((Person) kotliner).name);
         }
-
 
 
     }
