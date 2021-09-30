@@ -21,7 +21,7 @@ fun main() {
     val person = Person(20, "Benny")
     persons += person
 
-    // a moment later
+    // a moment later，会导致移除不了person
     println(persons.size)
 
     val person2 = Person(person.age + 1, person.name)

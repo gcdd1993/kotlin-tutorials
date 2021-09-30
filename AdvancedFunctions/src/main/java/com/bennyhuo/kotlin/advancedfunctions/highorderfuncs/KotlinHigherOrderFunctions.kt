@@ -22,7 +22,7 @@ fun main() {
     //endregion
 }
 
-//region +折叠
+//region +折叠 Ctrl +/-
 fun needsFunction(block: () -> Unit) {
     block()
 }

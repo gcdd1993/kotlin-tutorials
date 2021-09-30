@@ -22,6 +22,7 @@ fun main() {
     val ageRef = Person::age
     val person = Person(18, "Bennyhuo")
     val nameRef = person::name
+    // 属性引用
     ageRef.set(person, 20)
     nameRef.set("Andyhuo")
 }
